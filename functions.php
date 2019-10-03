@@ -1,4 +1,7 @@
 <?php
+/**
+ * Fruitful theme functions and definitions
+ */
 
 /**
  * Load stylesheets via wp_head()
@@ -21,8 +24,12 @@ function load_stylesheets() {
 	wp_enqueue_style('clean-blog');
 }
 
-add_action('wp_enqueue_scripts', 'load_stylesheets');
-
+/**
+ * Load scripts via wp_footer()
+ *
+ * @return void
+ * @author Kevin
+ */
 function load_scripts() {
 	
 	wp_register_script('jquery', get_template_directory_uri() . '/library/jquery/jquery.min.js', array(), 1, 1, 1 );
@@ -35,5 +42,19 @@ function load_scripts() {
 	wp_enqueue_script('clean-blog-js');
 }
 
-add_action('wp_enqueue_scripts', 'load_scripts');
+/**
+ * Add menu option under appearance on Wordpress
+ *
+ * @return void
+ * @author Kevin
+ */
+function register_navigation_menu() {
+	register_nav_menu('heading-menu', __('Heading Menu'));
+}  
 
+// Below are actions that are required to load both stylesheets and scripts
+add_action('wp_enqueue_scripts', 'load_stylesheets');
+add_action('wp_enqueue_scripts', 'load_scripts');
+add_action('init', 'register_navigation_menu');
+
+?>

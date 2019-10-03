@@ -1,54 +1,61 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The main template file.
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ */
+get_header(); ?>
 
-<body>
+<?php 
+get_template_part("navigation");
+get_template_part("heading"); 
 
-  <!-- Navigation -->
-  <?php get_template_part('navigation'); ?>
+$args = array(
+	"post_type" => "post",
+	"posts_per_page"  => "10"
+);
 
-  <!-- Page Heading -->
-  <?php get_template_part('heading'); ?>
+$the_query = new WP_Query($args);
+?>
 
-  <?php 
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
 
-    $args = array(
-      'post_type' => 'post',
-      'posts_per_page'  => '10'
-    );
+			<?php 
+			if( $the_query->have_posts() ) :
+			
+				/* Start the Loop */
+				while ( $the_query->have_posts() ) : 
+					$the_query->the_post();
 
-    $the_query = new WP_Query($args);
+					/*
+					* Include the Post-Format-specific template for the content.
+					*/
+					get_template_part("template-parts/content-posts");
+			
+				endwhile; ?>
 
-    $postDetails = get_field('post_details');
+				<div class="clearfix">
+					<a class="btn btn-primary float-right" href="#"><?php echo get_field("older_post_button"); ?></a>
+				</div>
 
-  ?>
+			<?php 
+			else :
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <?php if( $the_query->have_posts()) while ( $the_query->have_posts()) : $the_query->the_post(); ?>
+				get_template_part("template-parts/content-nopost");
 
-            <div class="post-preview">
-              <a href="post.html">
-              <h2 class="post-title"><?php echo get_the_title(); ?></h2>
-              <h3 class="post-subtitle"><?php echo get_field("subtitle"); ?></h3>
-              </a>
-              <p class="post-meta"><?php echo get_field("posted_text"); ?>
-              <a href="#"> <?php echo get_the_author(); ?></a> on 
-              <?php echo get_the_date(); ?></p>
-            </div>
-            <hr>
+			endif;
+			
+			wp_reset_postdata(); ?>
 
-        <?php endwhile; ?>
+		</div>
+	</div>
+</div>
 
-        <?php wp_reset_postdata(); ?>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <?php get_footer(); ?>
+<?php get_footer(); ?>

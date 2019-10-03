@@ -409,3 +409,36 @@ footer .copyright {
   font-size: 16px;
   padding: 25px 35px;
 }
+
+.no-posts {
+  text-align: center;
+}
+
+.custom-navbar ul {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+@media only screen and (min-width: 992px){
+  .custom-navbar ul {
+    flex-direction: row;
+    margin-left: auto!important;
+  }
+
+  .custom-navbar ul li a {
+    padding: 10px 20px;
+    color: #fff;
+  }
+}
+
+.custom-navbar ul li a {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

@@ -14,6 +14,7 @@
       'post_type' => 'post',
       'posts_per_page'  => '10'
     );
+
     $the_query = new WP_Query($args);
 
     $postDetails = get_field('post_details');
@@ -24,21 +25,20 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <?php if( $the_query->have_posts()) {
-          while ( $the_query->have_posts()){
-          $the_query->the_post();
-            print "<div class='post-preview'>";
-            print "<a href='post.html'>";
-            print "<h2 class='post-title'>" . get_the_title() . "</h2>";
-            print "<h3 class='post-subtitle'>" . the_field('subtitle') . "</h3>";
-            print "</a>";
-            print "<p class='post-meta'>" . the_field('posted_text') . "<a href='#'> " . get_the_author() . 
-                  "</a> on " . get_the_date() . "</p>";
-            print "</div>";
-            print "<hr>";
-          }
-        }
-        ?>
+        <?php if( $the_query->have_posts()) while ( $the_query->have_posts()) : $the_query->the_post(); ?>
+
+            <div class="post-preview">
+              <a href="post.html">
+              <h2 class="post-title"><?php echo get_the_title(); ?></h2>
+              <h3 class="post-subtitle"><?php echo get_field("subtitle"); ?></h3>
+              </a>
+              <p class="post-meta"><?php echo get_field("posted_text"); ?>
+              <a href="#"> <?php echo get_the_author(); ?></a> on 
+              <?php echo get_the_date(); ?></p>
+            </div>
+            <hr>
+
+        <?php endwhile; ?>
 
         <?php wp_reset_postdata(); ?>
         <!-- Pager -->

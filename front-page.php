@@ -42,7 +42,8 @@ $the_query = new WP_Query($args);
 				endwhile; ?>
 
 				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#"><?php echo get_field("older_post_button"); ?></a>
+					<?php $button_text = get_field("button_text"); ?>
+					<a class="btn btn-primary float-right" href="#"><?php echo $button_text ?></a>
 				</div>
 
 			<?php 
@@ -57,5 +58,7 @@ $the_query = new WP_Query($args);
 		</div>
 	</div>
 </div>
+
+<hr>
 
 <?php get_footer(); ?>

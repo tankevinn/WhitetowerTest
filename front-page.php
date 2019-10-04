@@ -14,9 +14,11 @@ get_header(); ?>
 get_template_part("navigation");
 get_template_part("heading"); 
 
+$max_post_number = get_field("max_post_number");
+
 $args = array(
 	"post_type" => "post",
-	"posts_per_page"  => "10"
+	"posts_per_page"  => $max_post_number
 );
 
 $the_query = new WP_Query($args);
@@ -29,7 +31,9 @@ $the_query = new WP_Query($args);
 
 			<?php 
 			if( $the_query->have_posts() ) :
-			
+
+				$post_button_text = get_field("post_button_text");
+
 				/* Start the Loop */
 				while ( $the_query->have_posts() ) : 
 					$the_query->the_post();
@@ -37,19 +41,18 @@ $the_query = new WP_Query($args);
 					/*
 					* Include the Post-Format-specific template for the content.
 					*/
-					get_template_part("template-parts/content-posts");
+					get_template_part("template-parts/content", "posts");
 			
 				endwhile; ?>
 
 				<div class="clearfix">
-					<?php $button_text = get_field("button_text"); ?>
-					<a class="btn btn-primary float-right" href="#"><?php echo $button_text ?></a>
+					<a class="btn btn-primary float-right" href="#"><?php echo $post_button_text ?></a>
 				</div>
 
 			<?php 
 			else :
 
-				get_template_part("template-parts/content-nopost");
+				get_template_part("template-parts/content", "nopost");
 
 			endif;
 			

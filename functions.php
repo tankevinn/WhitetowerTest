@@ -56,5 +56,4 @@ function register_navigation_menu() {
 add_action('wp_enqueue_scripts', 'load_stylesheets');
 add_action('wp_enqueue_scripts', 'load_scripts');
 add_action('init', 'register_navigation_menu');
-
 ?>

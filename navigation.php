@@ -1,6 +1,12 @@
-<?php $navigation_title = get_field("navigation_title"); ?>
+<?php
+/**
+ * This is the navigation template for the menu bar
+ */
+ 
+$navigation_title = get_field("navigation_title"); 
+$background_color = get_field("background_color");?>
 
-<body>
+<body style="background-color:<?php echo $background_color ?>">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 	<div class="container">
 		<a class="navbar-brand" href="index.php"><?php echo $navigation_title; ?></a>
@@ -18,6 +24,7 @@
 				'orderby' => 'menu_order'
 			);
 
+			// This line of code below will populate list of menu from navigation menu in Wordpress
 			wp_nav_menu( $args );
 
 			?>

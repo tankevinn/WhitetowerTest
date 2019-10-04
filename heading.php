@@ -1,5 +1,11 @@
-<?php $main_heading = get_field("main_heading"); ?>
-<?php $heading_image = $main_heading["heading_background_image"]; ?>
+<?php
+/**
+ * This is the heading template containing main heading on the front page
+ */
+
+$main_heading = get_field("main_heading");
+$heading_image = $main_heading["heading_background_image"]; ?>
+
 <header class="masthead" style="background-image: url('<?php echo $heading_image ?>')">
     <div class="overlay"></div>
     <div class="container">

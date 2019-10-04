@@ -1,13 +1,19 @@
-<?php get_header(); ?>
+<?php
+/**
+ * This is template for 404 error page if the page is not available
+ */
 
-<body>
+get_header(); 
 
-    <!-- Navigation -->
-    <?php get_template_part('navigation'); ?>
+get_template_part('navigation');
+get_template_part('heading'); ?>
 
-    <!-- Page Heading -->
-    <?php get_template_part('heading'); ?>
-
-<h2>Page not found</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+            <h2><?php _e("There is no page available in this URL"); ?></h2>
+        </div>
+    </div>
+</div>
 
 <?php get_footer(); ?>

@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is content template if posts is available
+ */
+?>
+
 <div class="post-preview">
     <a href="post.html">
     <h2 class="post-title"><?php echo get_the_title(); ?></h2>

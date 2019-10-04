@@ -4,7 +4,8 @@
  */
 
 $main_heading = get_field("main_heading");
-$heading_image = $main_heading["heading_background_image"]; ?>
+$heading_image = $main_heading["heading_background_image"]; 
+?>
 
 <header class="masthead" style="background-image: url('<?php echo $heading_image ?>')">
     <div class="overlay"></div>

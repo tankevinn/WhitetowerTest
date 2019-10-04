@@ -34,16 +34,13 @@ $the_query = new WP_Query($args);
 
 				$post_button_text = get_field("post_button_text");
 
-				/* Start the Loop */
-				while ( $the_query->have_posts() ) : 
+				while ( $the_query->have_posts() ) :	// Start the Loop if post is available
 					$the_query->the_post();
 
-					/*
-					* Include the Post-Format-specific template for the content.
-					*/
-					get_template_part("template-parts/content", "posts");
+					get_template_part("template-parts/content", "posts");	//Include the Post-Format specific template for the content
 			
-				endwhile; ?>
+				endwhile; 
+			?>
 
 				<div class="clearfix">
 					<a class="btn btn-primary float-right" href="#"><?php echo $post_button_text ?></a>
@@ -52,11 +49,12 @@ $the_query = new WP_Query($args);
 			<?php 
 			else :
 
-				get_template_part("template-parts/content", "nopost");
+				get_template_part("template-parts/content", "nopost");	//Include the no-post format template for the content
 
 			endif;
 			
-			wp_reset_postdata(); ?>
+			wp_reset_postdata(); 
+			?>
 
 		</div>
 	</div>

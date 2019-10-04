@@ -6,7 +6,8 @@
 get_header(); 
 
 get_template_part('navigation');
-get_template_part('heading'); ?>
+get_template_part('heading'); 
+?>
 
 <div class="container">
 	<div class="row">

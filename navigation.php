@@ -4,7 +4,8 @@
  */
  
 $navigation_title = get_field("navigation_title"); 
-$background_color = get_field("background_color");?>
+$background_color = get_field("background_color");
+?>
 
 <body style="background-color:<?php echo $background_color ?>">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -24,8 +25,8 @@ $background_color = get_field("background_color");?>
 				'orderby' => 'menu_order'
 			);
 
-			// This line of code below will populate list of menu from navigation menu in Wordpress
-			wp_nav_menu( $args );
+			wp_nav_menu( $args );	// This line of code below will populate list 
+									// of menu from navigation menu in Wordpress
 
 			?>
 			</ul>
